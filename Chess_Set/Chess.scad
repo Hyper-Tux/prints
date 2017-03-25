@@ -2,6 +2,20 @@ include <ChessLib.scad>
 
 $fn = 6;
 
+
+
+/// CONFIG ///
+
+// 0 -> one of each
+// 1 -> One set 4*4
+// 2 -> One set 2*8
+// 3 -> Complet chess game
+// 4 -> Test, 4 pawns
+
+/* [Options] */
+// Choose the set to modelize
+config = 1;
+
 // "p" or "P" for Pawn
 // "r" or "R" for Rook
 // "h" or "H" for Knight (Horse :-)
@@ -9,46 +23,50 @@ $fn = 6;
 // "q" or "Q" for Queen
 // "k" or "K" for King
 
-/// CONFIG ///
+pieces = [  ["p", "r", "h", "b", "q", "k"]];
 
-// One set 4*4
-/*
-pieces = [  ["p", "p", "p", "p"],
-            ["P", "p", "p", "P"],
-            ["r", "h", "b", "k"],
-            ["r", "h", "b", "q"]];
-            
-numLig = 4;
-numCol = 4;
-*/
+numLig = 1;
+numCol = 6;
 
-// One set 2*8
-/*
-pieces = [  ["p", "p", "p", "p", "p", "p", "p", "p"],
-            ["r", "h", "b", "q", "k", "b", "h", "r"]];
-            
-numLig = 2;
-numCol = 8;   
-*/
-// Complet chess game
-/*
-pieces = [  ["r", "h", "b", "q", "k", "b", "h", "r"],
-            ["p", "p", "p", "p", "p", "p", "p", "p"],
-            [" ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " "],
-            ["p", "p", "p", "p", "p", "p", "p", "p"],
-            ["r", "h", "b", "q", "k", "b", "h", "r"]];
-numLig = 8;
-numCol = 8;            
-*/
+if (config == 1) // One set 4*4
+{
+    pieces = [  ["p", "p", "p", "p"],
+                ["P", "p", "p", "P"],
+                ["r", "h", "b", "k"],
+                ["r", "h", "b", "q"]];
+                
+    numLig = 4;
+    numCol = 4;
+}
+else if (config == 2) // One set 2*8
+{
+    pieces = [  ["p", "p", "p", "p", "p", "p", "p", "p"],
+                ["r", "h", "b", "q", "k", "b", "h", "r"]];
+                
+    numLig = 2;
+    numCol = 8;   
+}
+else if (config == 3) // Complet chess game
+{
+    pieces = [  ["r", "h", "b", "q", "k", "b", "h", "r"],
+                ["p", "p", "p", "p", "p", "p", "p", "p"],
+                [" ", " ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " ", " "],
+                ["p", "p", "p", "p", "p", "p", "p", "p"],
+                ["r", "h", "b", "q", "k", "b", "h", "r"]];
+    numLig = 8;
+    numCol = 8;            
+}
+else if (config == 4) // Test, 4 pawns
+{
+    pieces = [  ["p", "p"],
+                ["p", "p"]];
 
-pieces = [  ["p", "p"],
-            ["p", "p"]];
-
-numLig = 2;
-numCol = 2; 
+    numLig = 2;
+    numCol = 2; 
+}
 
 stepByLig = 40;
 stepByCol = 40;

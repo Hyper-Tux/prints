@@ -16,10 +16,10 @@ blocsW = 3;
 
 /* [Hidden] */
 // Thickness of the arms
-armsT = (armsW-profilesW)/2;
+// tipsT = (tipsW-profilesW)/2;
 
 // to avoid "z fighting" where surfaces line up exactly, add a bit of fudge
-fudge = .001;
+fudge = 1;
 
 module void_profile(
     length,         // Length of the profile
@@ -27,7 +27,7 @@ module void_profile(
     blocL = 6,      // Lenght of the bloc
     blocW = 3)      // Width of the bloc
 {
-    step = (width - blocW)/2;
+    step = (width - blocL)/2;
 
     // Bottom-left hole
     translate([0,0,0])             
@@ -76,5 +76,5 @@ union()
     cube(tipsW);
 
     translate([tipsW, 0, 0])
-    tip_profile(tipsL, tipsW, profilesW, blocsL, blocsW);
+    tip_profile(tipsL, tipsW, profilesW, blocsL, blocsW, fudge);
 }
